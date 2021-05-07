@@ -11,10 +11,8 @@ def Segmentation():
 
     #Execute Segmentation
     #https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/segment-mean-shift.htm
-    print("Executing Segmentation of")
     image = SegmentMeanShift(in_raster, spectral_detail, spatial_detail, min_segment_size)
     image.save("segmented_ir.tif")
-    print("Done")
 
 def RemoveExtra():
     # Delete unnecesary files
@@ -24,10 +22,13 @@ def RemoveExtra():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
+    print("Executing Segmentation")
     Segmentation()
+    print("Removing Extra files")
     RemoveExtra()
+    print("Segmentation Finished")
 
 if __name__ == "__main__":
     main()

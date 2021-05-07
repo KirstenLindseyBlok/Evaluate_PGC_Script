@@ -10,16 +10,16 @@ def Classify_Raster():
 
     # Execute
     # https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/train-support-vector-machine-classifier.htm
-    print("Execute Classification")
     Classifiedraster = ClassifyRaster(in_Raster, in_classifier_definition, in_additional_raster)
     Classifiedraster.save("Classified.tif")
-    print("Done")
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
+    print("Executing Classification")
     Classify_Raster()
+    print("Classification Finished")
 
 if __name__ == "__main__":
     main()
