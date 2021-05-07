@@ -7,7 +7,7 @@ def IR():
 
     # Set local Variables
     input_Rasters_ir = irList
-    output_location_ir = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    output_location_ir = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     raster_dataset_name_with_extension_ir = "Mosaic_ir.tif"
 
     #Execute
@@ -17,11 +17,11 @@ def IR():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Executing IR Imagery Prep")
     IR()
-    print("Finished")
+    print("IR Imagery Prep Finished")
 
 if __name__ == "__main__":
     main()

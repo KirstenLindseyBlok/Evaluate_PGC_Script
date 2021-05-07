@@ -19,6 +19,7 @@ def SelectByAttribute():
 
     #Write the selected features to a new feature class
     arcpy.CopyFeatures_management(gardens, 'Gardens.shp')
+    print("Extracting Private Gardens Completed")
 
 def Clip():
     #Set local variables
@@ -28,16 +29,17 @@ def Clip():
 
     #Execute Clip
     arcpy.Clip_analysis(in_features, clip_features, out_feature_class)
+    print("Extracting Private Gardens Per Plot Completed")
 
 def main():
     #Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/ScriptEvaluation/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     #Execute Prep
     print("Execute Garden Plot Prep")
     SelectByAttribute()
     Clip()
-    print("Finished")
+    print("Garden Plot Prep Finished")
 
 if __name__ == "__main__":
     main()

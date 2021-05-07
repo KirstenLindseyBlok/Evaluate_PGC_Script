@@ -38,11 +38,22 @@ def Percentage():
     E_Percentage_of_Garden.main()
 
 def main():
+    print("Initiating Data Prep")
     DataPrep()
+    print("Data Prep Completed")
+    print("Innitiating Initial Classification")
     # Classification()
+    print("Initial Classification Completed")
+    print("Innitiating Accuracy Assessment")
     # AccuracyAssessment()
+    print("Accuracy Assessment Completed")
+    print("Innitiating Final Classification")
     # Final_Classification()
+    print("Final Classification Completed")
+    print("Initiating Percentage Calculation")
     # Percentage()
+    print("Percentage Calculation Completed")
+    print("PGC Project Completed")
 
 if __name__ == "__main__":
     main()

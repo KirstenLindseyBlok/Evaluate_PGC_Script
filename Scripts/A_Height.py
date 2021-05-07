@@ -28,10 +28,9 @@ def FillDTM():
 
     #Execute the ElevationVoidFill function
     #https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/elevationvoidfill.htm
-    print("Executing Void Fill DTM")
     out_raster_DTM = ElevationVoidFill(in_raster_DTM, max_void_width)
     out_raster_DTM.save(f"DTM_NoVoid.tif")
-    print("Done")
+    print("Void Fill DTM Completed")
 
 def FillDSM():
     #Define input parameters
@@ -39,10 +38,9 @@ def FillDSM():
     max_void_width = 0
 
     #Execute the ElevationVoidFill function
-    print("Executing Void Fill DSM")
     out_raster_DSM = ElevationVoidFill(in_raster_DSM, max_void_width)
     out_raster_DSM.save(f"DSM_NoVoid.tif")
-    print("Done")
+    print("Void Fill DSM Completed")
 
 def Height():
     # Set local variables
@@ -53,11 +51,11 @@ def Height():
     #https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm
     out_rc_minus_raster = RasterCalculator([in_raster_DSM, in_raster_DTM], ["x", "y"], "x-y", "FirstOf", "FirstOf")
     out_rc_minus_raster.save(f"Height.tif")
-    print("Done")
+    print("Calculating Height Data Completed")
 
 def main():
     #Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     #Execute Prep
     print("Executing Height Prep")
@@ -65,7 +63,7 @@ def main():
     FillDTM()
     FillDSM()
     Height()
-    print("Finished")
+    print("Height Prep Finished")
 
 if __name__ == "__main__":
     main()
