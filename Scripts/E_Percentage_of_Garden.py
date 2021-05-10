@@ -90,10 +90,10 @@ def main():
     # Set geoprocessing environments
     env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
     env.overwriteOutput = True
-    # print("Calculating classes per zone")
-    # Tabular_Intersection()
-    # print("Merging classes with same value per zone")
-    # Pivot_Table()
+    print("Calculating classes per zone")
+    Tabular_Intersection()
+    print("Merging classes with same value per zone")
+    Pivot_Table()
     print("Join pivot table with garden plot shapefile")
     Add_join()
     print("Done")

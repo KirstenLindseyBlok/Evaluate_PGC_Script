@@ -2,6 +2,18 @@ import arcpy
 from arcpy import env
 from arcpy.ia import *
 
+def Reclass_DSTM():
+    # Set local variables
+    in_raster = "Height_0"
+    reclass_field = "VALUE"
+    remap = "-100000 0 1;0 0.1 2;0.1 2 3;2 100000 4"
+    out_raster = "RC_Height.tif"
+
+    # Execute
+    print("Execute Reclassification")
+    arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
+    print("Done")
+
 def Raster_Calc():
     #Set local variables
     in_raster_AHN = "rc_height"
@@ -32,6 +44,8 @@ def main():
     # Set geoprocessing environments
     env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
     env.overwriteOutput = True
+    print("Reclassifying DSTM")
+    Reclass_DSTM()
     print("Executing Raster Calculations")
     # Raster_Calc()
     print("Execute Final Classification")

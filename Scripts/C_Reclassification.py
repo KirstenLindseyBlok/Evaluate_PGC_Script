@@ -1,18 +1,6 @@
 import arcpy
 from arcpy import env
 
-def Reclass_DSTM():
-    # Set local variables
-    in_raster = "Height_0"
-    reclass_field = "VALUE"
-    remap = "-100000 0 1;0 0.1 2;0.1 2 3;2 100000 4"
-    out_raster = "RC_Height.tif"
-
-    # Execute
-    print("Execute Reclassification")
-    arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
-    print("Done")
-
 def Reclass_Class_Image():
     in_raster = "Classified2.tif"
     reclass_field = "Classvalue"
@@ -25,7 +13,7 @@ def Reclass_Class_Image():
     arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
     print("Done")
 
-def Reclass_Training_Samples():
+def Reclass_Ground_Truth():
     #Set local variables for reclassification
     in_table = "TrainingSamples.shp"
     field = "Classvalue"
@@ -64,12 +52,10 @@ def main():
     # Set geoprocessing environments
     env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
     env.overwriteOutput = True
-    print("Reclassifying DSTM")
-    Reclass_DSTM()
     print("Reclassifying Classified Image")
     Reclass_Class_Image()
     print("Reclassifying Training Samples")
-    Reclass_Training_Samples()
+    Reclass_Ground_Truth()
     print("Done")
 
 if __name__ == "__main__":
