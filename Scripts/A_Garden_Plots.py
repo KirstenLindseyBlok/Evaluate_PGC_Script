@@ -33,7 +33,7 @@ def Clip():
 
 def main():
     #Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     #Execute Prep
     print("Execute Garden Plot Prep")

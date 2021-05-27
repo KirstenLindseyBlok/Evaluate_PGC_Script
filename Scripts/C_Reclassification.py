@@ -50,7 +50,7 @@ def Reclass(Classvalue):
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
     env.overwriteOutput = True
     print("Reclassifying Classified Image")
     Reclass_Class_Image()

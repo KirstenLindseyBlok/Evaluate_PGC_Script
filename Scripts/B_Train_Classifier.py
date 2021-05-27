@@ -18,7 +18,7 @@ def Train_Classifier():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Executing Classifier Training")
     Train_Classifier()
