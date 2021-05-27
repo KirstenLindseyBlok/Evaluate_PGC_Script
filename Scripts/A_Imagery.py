@@ -7,7 +7,7 @@ def IR():
 
     # Set local Variables
     input_Rasters_ir = irList
-    output_location_ir = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
+    output_location_ir = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     raster_dataset_name_with_extension_ir = "Mosaic_ir.tif"
 
     #Execute
