@@ -23,7 +23,7 @@ from arcpy.ia import *
 
 def FillDTM():
     #Define input parameters
-    in_raster_DTM = "M_38AN2.TIF"
+    in_raster_DTM = "M_38AN2.tif"
     max_void_width = 0
 
     #Execute the ElevationVoidFill function
@@ -34,7 +34,7 @@ def FillDTM():
 
 def FillDSM():
     #Define input parameters
-    in_raster_DSM = "R_38AN2.TIF"
+    in_raster_DSM = "R_38AN2.tif"
     max_void_width = 0
 
     #Execute the ElevationVoidFill function

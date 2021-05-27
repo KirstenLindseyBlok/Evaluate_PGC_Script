@@ -35,11 +35,11 @@ def main():
     #Set geoprocessing environments
     env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
-    # #Execute Prep
-    # print("Execute Garden Plot Prep")
-    # SelectByAttribute()
-    # Clip()
-    # print("Garden Plot Prep Finished")
+    #Execute Prep
+    print("Execute Garden Plot Prep")
+    SelectByAttribute()
+    Clip()
+    print("Garden Plot Prep Finished")
 
 if __name__ == "__main__":
     main()
