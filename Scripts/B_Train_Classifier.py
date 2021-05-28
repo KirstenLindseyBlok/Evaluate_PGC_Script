@@ -5,7 +5,7 @@ from arcpy.sa import *
 def Train_Classifier():
     # Set local variables
     in_Raster = "Mosaic_ir.tif"
-    train_features = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data/TrainingSamplesOriginal.shp"
+    train_features = "TrainingSamplesOriginal.shp"
     out_definition = "ClassDefinition.ecd"
     in_additional_raster = "segmented_ir.tif"
     maxNumSamples = "0"

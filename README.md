@@ -59,7 +59,9 @@ As such, do not forget to adjust *in_raster* accordingly:
     in_raster_DTM = "M_38AN2.TIF"
     in_raster_DTM = "Mosaic_DTM"
 
-2. The data is downloaded from https://downloads.pdok.nl/ahn3-downloadpage/. DSM-files are labeled "R_*" and DTM-files are labeled "M_*" This commonality is used to create lists which will be used to make the mosaic rasters.
+2. The data is downloaded from https://downloads.pdok.nl/ahn3-downloadpage/. 
+   DSM-files are labeled "R_*" and DTM-files are labeled "M_*" This commonality is 
+   used to create lists which will be used to make the mosaic rasters.
 
 3. Be patient. This step takes a long time
 
@@ -71,25 +73,35 @@ The data is prepped by:
 1. creating a mosaic to merge all the images
 
 Notes:
-Make sure to change the output_location_ir to the folder matching the workspace environment
+Make sure to change the output_location_ir to the folder matching the workspace 
+environment
 
 ##**Step two | Image Classification**
 
+The initial image classification is done following three steps:
+1. segmentation
+2. classifier training
+3. classification
+
 ###**Segmentation**
 
-Contains the output of the Imagery preparation as input (mosaic of all infra red imagery)
+Contains the output of the Imagery preparation as input (mosaic of all infra red 
+imagery) and creates a segmented raster image based on the spectral and spatial 
+characteristics of the data. 
+
+It must be said that the results of the set spectral_detail and spatial_detail as 
+well as the min_segmented_size using python may vary from the results with the same
+settings in ArcGIS Pro itself. 
+
+Also, be patient! Segmentation tents to take long af. 
 
 ###**Train Classifier**
 
-###**Inspect Training Samples**
+The classifier is trained using the segmented raster image and the training samples. 
+The final result is a classification definition file which can later be used to
+classify the imagery. 
 
-In ArcGIS Pro itself. Doesn't work properly but still creates scores
-Re-do with new training samples. Currently they do not overlap completely with the area to be classified
-
-Notes
-All training samples should lay withing the raster to be classified
-Also, processing can take a really long time!
-Make sure to use the correct classification schema. 
+Once again, this step may take a long time.
 
 ###**Classify Raster**
 

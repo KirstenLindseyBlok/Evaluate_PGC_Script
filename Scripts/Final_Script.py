@@ -38,12 +38,12 @@ def Percentage():
     E_Percentage_of_Garden.main()
 
 def main():
-    print("Initiating Data Prep")
-    DataPrep()
-    print("Data Prep Completed")
-    # print("Innitiating Initial Classification")
-    # Classification()
-    # print("Initial Classification Completed")
+    # print("Initiating Data Prep")
+    # DataPrep()
+    # print("Data Prep Completed")
+    print("Innitiating Initial Classification")
+    Classification()
+    print("Initial Classification Completed")
     # print("Innitiating Accuracy Assessment")
     # AccuracyAssessment()
     # print("Accuracy Assessment Completed")
