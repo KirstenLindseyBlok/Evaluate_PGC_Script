@@ -107,9 +107,9 @@ instance this process may also be run in ArcGIS Pro itself.
 ###**Classify Raster**
 
 In this step, the classification definition created earlier is used to classify the
-(infra red) imagery. 
+(infra-red) imagery. 
 
-##**Step 3 | Accuracy Assessment**##
+##**Step 3 | Accuracy Assessment**
 
 In order to complete the accuracy assessment a couple of steps will 
 have to be taken:
@@ -147,8 +147,42 @@ Note:
 Be sure to safe the confusion matrix output table as a dbf or save in a 
 geodatabase otherwise the code won't run.
 
-##**Step 4 | Final Classification**##
+##**Step 4 | Final Classification**
 
-##**Step 5 | Percentage of Garden**##
+The final classification is completed following a couple of steps and sub-steps:
+1. Final classification of whole area
+   - Reclassification of height data
+   - Raster calculation of initial classified raster and height data
+   - Reclassification of final classes
+   
+2. Results of only the garden plots
+   - Transform final classification from raster to polygon
+   - Extract the garden plots
+
+###**Final Classification**
+
+As mentioned earlier, first the height data will have to be reclassified. In total 
+four categories are created:
+- With a height up to 0 metres (value = 1)
+- With a height between 0 and 0.1 metres (value = 2)
+- With a height between 0.1 and 2 metres (value = 3)
+- With a height of 2 metres and higher (value =4)
+
+By adding these new values to the reclassified initial classified data (see step 3 - 
+reclassification), the final classes can be identified. The final classes include:
+
+    1 = pavement                 5 = trees
+    2 = buildings                6 = other surfaces
+    3 = grass                    7 = other structures
+    4 = bushes                   8 = bare
+
+###**Classification of Gardens**
+
+As indicated earlier, the final classified raster will first have to be transfomred to
+a polygon. This is done to ensure the entire garden will be included in the final 
+results. Secondly, the only thing left to be done is extract the gardenplots from the 
+final classified polygon file. 
+
+##**Step 5 | Percentage of Garden**
 
 

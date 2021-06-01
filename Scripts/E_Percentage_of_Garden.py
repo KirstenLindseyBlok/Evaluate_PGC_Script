@@ -88,7 +88,7 @@ def Add_join():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Calculating classes per zone")
     Tabular_Intersection()

@@ -29,10 +29,6 @@ def Reclass_Final_Class():
     in_raster = "Height_and_Class.tif"
     reclass_field = "Value"
     remap = "0 12 1;12 13 7;13 20 2;20 22 3;22 23 4;23 30 5;30 32 6;32 40 7;40 50 7"
-    #1 = pavement                   #5 = trees
-    #2 = buildings                  #6 = other surfaces
-    #3 = grass                      #7 = other structures
-    #4 = bushes                     #8 = bare
     out_raster = "Final_Classes.tif"
 
     # Execute
