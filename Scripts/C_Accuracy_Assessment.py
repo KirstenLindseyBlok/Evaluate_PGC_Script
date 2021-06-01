@@ -36,7 +36,7 @@ def Confusion_Matrix():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Creating Ground Truth Points")
     Ground_Truth()

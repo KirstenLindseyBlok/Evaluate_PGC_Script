@@ -97,26 +97,58 @@ Also, be patient! Segmentation tents to take long af.
 
 ###**Train Classifier**
 
-The classifier is trained using the segmented raster image and the training samples. 
+The classifier is trained using the segmented raster image, and the training samples. 
 The final result is a classification definition file which can later be used to
 classify the imagery. 
 
-Once again, this step may take a long time.
+May get a warning that the max number of iterations has been reached. In that 
+instance this process may also be run in ArcGIS Pro itself. 
 
 ###**Classify Raster**
 
+In this step, the classification definition created earlier is used to classify the
+(infra red) imagery. 
+
+##**Step 3 | Accuracy Assessment**##
+
+In order to complete the accuracy assessment a couple of steps will 
+have to be taken:
+1. Reclassify the Classified raster 
+2. Reclassify the Ground Truth Samples
+3. Create Accuracy Assessment Points based on Ground Truth
+4. Update Accuracy Assessment Points with Classified raster
+5. Create and Interpret Confusion Matrix
+
 ###**Reclassify**
 
-To reclassify the training sample values, the block code is moved a bit to the left despite it being part of the same function
-this is due to the fact that it will otherwise not work. the extra space will cause a problem in running of the tool. 
-Also, no new dataset will be created in this instance. the reclassed values will be added as a new column to the already 
-existing dataset. 
+Starting with the first, the data are reclassified such that only four classes 
+remain, namely: Impervious as 10, Pervious as 20, Bare as 30, and Other as 40. 
+Moreover, make sure that when the local variables are set for the ground truth 
+classification, the code_block is written starting all the way on the leftn(so the 
+code_block definition should be written without any tabs in front of it); otherwise 
+the code won't work. Also, no new dataset will be created in this instance; the 
+reclassified values will be added as a new column to the already existing dataset. 
+Lastly, it was decided to merge the 'water class' together with the 'other class' as
+it caused to many mis-classifications. 
 
 ###**Accuracy Assessment**
 
-Update Accuracy Assessment points in Pycharm gives wrong output, whereas it works fine in ArcGIS Pro
-Both, with the tool itself as python in ArcGIS Pro). Possibly a bug?
+A stratified random sample of points is used to compare the resulting classified 
+raster with ground truth samples. It does this by assigning the classified values
+as well as the ground truth value of the concerned location to the point. The 
+comparison can be clearly analysed and interpreted in the confusion matrix which 
+also shows what a specific class tents to be misinterpreted as. Ultimately, one 
+should aim for an accuracy of 1, however scores of 0.8 and up are also considered 
+to be significant enough to continue. If not, your training samples should be 
+altered. See the final project report for more information about how to read the
+confusion matrix. 
 
-###**Percentage of Garden**
+Note:
+Be sure to safe the confusion matrix output table as a dbf or save in a 
+geodatabase otherwise the code won't run.
 
-Be sure to safe output table as dbf or save in a geodatabase otherwise the code won't run
+##**Step 4 | Final Classification**##
+
+##**Step 5 | Percentage of Garden**##
+
+

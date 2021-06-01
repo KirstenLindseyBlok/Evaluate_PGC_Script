@@ -145,4 +145,30 @@ def Reclass(Classvalue):
     elif Classvalue == 40:
         return 40
     elif Classvalue == 50:
-        return 30 " Text</Process></lineage></DataProperties></Esri></metadata>
+        return 30 " Text</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CalculateField" Date="20210601" Time="135201">CalculateField C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data\TrainingSamples.shp Classvalue Reclass(!Classvalue!) "Python 3" "
+# Reclassify values to another value
+# More calculator examples at esriurl.com/CalculatorExamples
+def Reclass(Classvalue):
+    if Classvalue == 10:
+        return 10
+    elif Classvalue == 20:
+        return 20
+    elif Classvalue == 30:
+        return 30
+    elif Classvalue == 40:
+        return 40
+    elif Classvalue == 50:
+        return 30 " Text NO_ENFORCE_DOMAINS</Process><Process ToolSource="c:\program files\arcgis\pro\Resources\ArcToolbox\toolboxes\Data Management Tools.tbx\CalculateField" Date="20210601" Time="135300">CalculateField C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data\TrainingSamples.shp Classvalue Reclass(!Classvalue!) "Python 3" "
+# Reclassify values to another value
+# More calculator examples at esriurl.com/CalculatorExamples
+def Reclass(Classvalue):
+    if Classvalue == 10:
+        return 10
+    elif Classvalue == 20:
+        return 20
+    elif Classvalue == 30:
+        return 30
+    elif Classvalue == 40:
+        return 40
+    elif Classvalue == 50:
+        return 30 " Text NO_ENFORCE_DOMAINS</Process></lineage></DataProperties></Esri></metadata>

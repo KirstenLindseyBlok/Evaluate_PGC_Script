@@ -2,9 +2,9 @@ import arcpy
 from arcpy import env
 
 def Reclass_Class_Image():
-    in_raster = "Classified2.tif"
+    in_raster = "Classified.tif"
     reclass_field = "Classvalue"
-    remap = "0 15 10;15 25 20;25 35 30;35 45 40;45 55 30"
+    remap = "0 15 10;15 25 20;25 35 40;35 45 30;45 55 40"
     out_raster = "RC_Class.tif"
 
     # Execute
@@ -39,7 +39,7 @@ def Reclass(Classvalue):
     arcpy.CalculateField_management(in_table, field,expression, expression_type, code_block)
 
     #Set local variables to dissolve and merge water and other
-    in_features = "TrainingSamples.shp"
+    in_features = "TrainingSamplesOriginal.shp"
     out_feature_class = "RC_Training.shp"
     dissolve_field = "Classvalue"
 
@@ -50,7 +50,7 @@ def Reclass(Classvalue):
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Reclassifying Classified Image")
     Reclass_Class_Image()

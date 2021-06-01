@@ -23,7 +23,7 @@ def Extract_Gardens():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Creating Polygon")
     Raster_to_Polygon()

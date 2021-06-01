@@ -4,10 +4,10 @@ from arcpy.sa import *
 
 def Train_Classifier():
     # Set local variables
-    in_Raster = "Mosaic_ir.tif"
+    in_Raster = "segmented_ir.tif"
     train_features = "TrainingSamplesOriginal.shp"
     out_definition = "ClassDefinition.ecd"
-    in_additional_raster = "segmented_ir.tif"
+    in_additional_raster = ""
     maxNumSamples = "0"
     attributes = "COLOR;COUNT;COMPACTNESS;RECTANGULARITY"
     dimension_value_field = "Classvalue"
