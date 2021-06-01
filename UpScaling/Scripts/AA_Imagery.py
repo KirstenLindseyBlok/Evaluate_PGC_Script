@@ -17,7 +17,7 @@ def IR():
 
 def main():
     # Set geoprocessing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/UpScaling"
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/UpScaling/Data"
     env.overwriteOutput = True
     print("Executing IR Imagery Prep")
     IR()

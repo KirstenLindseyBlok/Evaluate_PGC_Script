@@ -2,24 +2,7 @@ import arcpy
 from arcpy import env
 from arcpy.ia import *
 
-# def Mosaic():
-#     # Create list of rasters in gdb workspace filtered based on their name
-#     DSMList = arcpy.ListRasters(wild_card="R*")
-#     DTMList = arcpy.ListRasters(wild_card="M*")
-#
-#     # Set local Variables
-#     input_Rasters_DSM = DSMList
-#     input_Rasters_DTM = DTMList
-#     output_location = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
-#     raster_dataset_name_with_extension_DSM = "Mosaic_DSM.tif"
-#     raster_dataset_name_with_extension_DTM = "Mosaic_DTM.tif"
-#
-#     # Execute
-#     # https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/mosaic-to-new-raster.htm
-#     arcpy.MosaicToNewRaster_management(input_Rasters_DSM, output_location, raster_dataset_name_with_extension_DSM,
-#                                        number_of_bands="1")
-#     arcpy.MosaicToNewRaster_management(input_Rasters_DTM, output_location, raster_dataset_name_with_extension_DTM,
-#                                        number_of_bands="1")
+
 
 def FillDTM():
     #Define input parameters
@@ -41,7 +24,25 @@ def FillDSM():
     out_raster_DSM = ElevationVoidFill(in_raster_DSM, max_void_width)
     out_raster_DSM.save(f"DSM_NoVoid.tif")
     print("Void Fill DSM Completed")
-
+    
+# def Mosaic():
+#     # Create list of rasters in gdb workspace filtered based on their name
+#     DSMList = arcpy.ListRasters(wild_card="R*")
+#     DTMList = arcpy.ListRasters(wild_card="M*")
+#
+#     # Set local Variables
+#     input_Rasters_DSM = DSMList
+#     input_Rasters_DTM = DTMList
+#     output_location = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+#     raster_dataset_name_with_extension_DSM = "Mosaic_DSM.tif"
+#     raster_dataset_name_with_extension_DTM = "Mosaic_DTM.tif"
+#
+#     # Execute
+#     # https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/mosaic-to-new-raster.htm
+#     arcpy.MosaicToNewRaster_management(input_Rasters_DSM, output_location, raster_dataset_name_with_extension_DSM,
+#                                        number_of_bands="1")
+#     arcpy.MosaicToNewRaster_management(input_Rasters_DTM, output_location, raster_dataset_name_with_extension_DTM,
+#                                        number_of_bands="1")
 def Height():
     # Set local variables
     in_raster_DTM = "DTM_NoVoid.tif"
