@@ -2,7 +2,7 @@ import arcpy
 from arcpy import env
 
 def IR():
-    # Create list of rasters in gdb workspace filtered based on their name
+    # Create list of rasters filtered based on their name
     irList = arcpy.ListRasters(wild_card="rgb*")
 
     # Set local Variables
