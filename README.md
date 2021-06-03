@@ -185,4 +185,13 @@ final classified polygon file.
 
 ##**Step 5 | Percentage of Garden**
 
-
+PivotTable = OID
+PivotTab_1 = FID_
+PivotTab_2 = gridcode1 = pavement
+PivotTab_3 = gridcode2 = buildings
+PivotTab_4 = gridcode3 = grass
+PivotTab_5 = gridcode4 = bushes
+PivotTab_6 = gridcode5 = trees
+PivotTab_7 = gridcode6 = other surfaces
+PivotTab_8 = gridcode7 = other structures
+PivotTab_9 = gridcode8 = bare
