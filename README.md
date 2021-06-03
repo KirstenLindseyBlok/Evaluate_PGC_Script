@@ -1,13 +1,13 @@
 # PGC_Project
 
-##**General Notes**
+## **General Notes**
 
 1. Be sure to adjust the file paths in the script accordingly. Think of the workspace 
    environments, but also some of the output or input locations.
 2. In case of use of a regular folder, instead of a geodatabase, be sure to include 
    all file types for both, input data and output data. 
 
-##**Step one | Data Preparation**
+## **Step one | Data Preparation**
 
 This project requires five data inputs:
 1. Infra red imagery to be classified
@@ -23,7 +23,7 @@ phase. In case data from other sources is ues, other preparations may be needed.
 Similarly, it is possible that no preparations are needed. The sections below will 
 explain what that data should look like. 
 
-###**Gardens**
+### **Gardens**
 
 Contains two data inputs:
 - onbegroeidterrein from the BGT wich includes the bgt_fysiek attribute 'erf' 
@@ -37,7 +37,7 @@ The data is prepped by:
 
 The end result is a polygon shapefile containing all private garden plots. 
 
-###**Height**
+### **Height**
 
 Contains two data inputs:
 - DSM
@@ -65,7 +65,7 @@ As such, do not forget to adjust *in_raster* accordingly:
 
 3. Be patient. This step takes a long time
 
-###**Imagery**
+### **Imagery**
 
 Contains all the infra-red aerial imagery as input
 
@@ -76,14 +76,14 @@ Notes:
 Make sure to change the output_location_ir to the folder matching the workspace 
 environment
 
-##**Step two | Image Classification**
+## **Step two | Image Classification**
 
 The initial image classification is done following three steps:
 1. segmentation
 2. classifier training
 3. classification
 
-###**Segmentation**
+### **Segmentation**
 
 Contains the output of the Imagery preparation as input (mosaic of all infra red 
 imagery) and creates a segmented raster image based on the spectral and spatial 
@@ -95,7 +95,7 @@ settings in ArcGIS Pro itself.
 
 Also, be patient! Segmentation tents to take long af. 
 
-###**Train Classifier**
+### **Train Classifier**
 
 The classifier is trained using the segmented raster image, and the training samples. 
 The final result is a classification definition file which can later be used to
@@ -104,12 +104,12 @@ classify the imagery.
 May get a warning that the max number of iterations has been reached. In that 
 instance this process may also be run in ArcGIS Pro itself. 
 
-###**Classify Raster**
+### **Classify Raster**
 
 In this step, the classification definition created earlier is used to classify the
 (infra-red) imagery. 
 
-##**Step 3 | Accuracy Assessment**
+## **Step 3 | Accuracy Assessment**
 
 In order to complete the accuracy assessment a couple of steps will 
 have to be taken:
@@ -119,7 +119,7 @@ have to be taken:
 4. Update Accuracy Assessment Points with Classified raster
 5. Create and Interpret Confusion Matrix
 
-###**Reclassify**
+### **Reclassify**
 
 Starting with the first, the data are reclassified such that only four classes 
 remain, namely: Impervious as 10, Pervious as 20, Bare as 30, and Other as 40. 
@@ -131,7 +131,7 @@ reclassified values will be added as a new column to the already existing datase
 Lastly, it was decided to merge the 'water class' together with the 'other class' as
 it caused to many mis-classifications. 
 
-###**Accuracy Assessment**
+### **Accuracy Assessment**
 
 A stratified random sample of points is used to compare the resulting classified 
 raster with ground truth samples. It does this by assigning the classified values
@@ -147,7 +147,7 @@ Note:
 Be sure to safe the confusion matrix output table as a dbf or save in a 
 geodatabase otherwise the code won't run.
 
-##**Step 4 | Final Classification**
+## **Step 4 | Final Classification**
 
 The final classification is completed following a couple of steps and sub-steps:
 1. Final classification of whole area
@@ -159,7 +159,7 @@ The final classification is completed following a couple of steps and sub-steps:
    - Transform final classification from raster to polygon
    - Extract the garden plots
 
-###**Final Classification**
+### **Final Classification**
 
 As mentioned earlier, first the height data will have to be reclassified. In total 
 four categories are created:
@@ -176,14 +176,14 @@ reclassification), the final classes can be identified. The final classes includ
     3 = grass                    7 = other structures
     4 = bushes                   8 = bare
 
-###**Classification of Gardens**
+### **Classification of Gardens**
 
 As indicated earlier, the final classified raster will first have to be transfomred 
 to a polygon. This is done to ensure the entire garden will be included in the final
 results. Secondly, the only thing left to be done is extract the gardenplots from the 
 final classified polygon file. 
 
-##**Step 5 | Percentage of Garden**
+## **Step 5 | Percentage of Garden**
 
 The percentages per gardenplot are calculated in three steps:
 1. tabular intersection
@@ -193,12 +193,12 @@ The percentages per gardenplot are calculated in three steps:
    - add field
    - calculate field
 
-###**Tabular Intersection**
+### **Tabular Intersection**
 Intersects the Garden plots with the classified raster to cross tabulate the area, 
 length, count of the intersecting features, and the corresponding percentage of the 
 entire garden plot.
 
-###**Pivot Table**
+### **Pivot Table**
 The issue with the tabular intersection tool is that when a garden contains two 
 separate sections that are classified as green, it will calculate the percentage of
 those sections seperately, instead of giving the combined percentage of the total
@@ -227,7 +227,7 @@ to reduce redundancy in records and flatten one-to-many relationships as illustr
 The difference being that in this instance Pivot Field would equal the gridcodes, and 
 the value field would contain the percentages. 
 
-###**Add join**
+### **Add join**
 
 In order to visualise the percentages used as either impervious, pervious, or other,
 the pivot table will have to be joined with the garden plots shapefile. The garden
