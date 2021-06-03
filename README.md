@@ -178,20 +178,78 @@ reclassification), the final classes can be identified. The final classes includ
 
 ###**Classification of Gardens**
 
-As indicated earlier, the final classified raster will first have to be transfomred to
-a polygon. This is done to ensure the entire garden will be included in the final 
+As indicated earlier, the final classified raster will first have to be transfomred 
+to a polygon. This is done to ensure the entire garden will be included in the final
 results. Secondly, the only thing left to be done is extract the gardenplots from the 
 final classified polygon file. 
 
 ##**Step 5 | Percentage of Garden**
 
-PivotTable = OID
-PivotTab_1 = FID_
-PivotTab_2 = gridcode1 = pavement
-PivotTab_3 = gridcode2 = buildings
-PivotTab_4 = gridcode3 = grass
-PivotTab_5 = gridcode4 = bushes
-PivotTab_6 = gridcode5 = trees
-PivotTab_7 = gridcode6 = other surfaces
-PivotTab_8 = gridcode7 = other structures
-PivotTab_9 = gridcode8 = bare
+The percentages per gardenplot are calculated in three steps:
+1. tabular intersection
+2. pivot table
+3. add join
+   - delete unnecessary columns
+   - add field
+   - calculate field
+
+###**Tabular Intersection**
+Intersects the Garden plots with the classified raster to cross tabulate the area, 
+length, count of the intersecting features, and the corresponding percentage of the 
+entire garden plot.
+
+###**Pivot Table**
+The issue with the tabular intersection tool is that when a garden contains two 
+separate sections that are classified as green, it will calculate the percentage of
+those sections seperately, instead of giving the combined percentage of the total
+garden plot that is green. That's where the Pivot Table comes in. This tool is able
+to reduce redundancy in records and flatten one-to-many relationships as illustrated below.
+
+**Input Table**
+
+| ID  | Type | Pivot Field |Value Field |
+| --- |:----:| -----------:| ----------:|
+| 1   | A    | X1          | 20         |
+| 1   | A    | X2          | 21         |
+| 2   | A    | X1          | 23         |
+| 2   | A    | X2          | 29         |
+| 2   | B    | X1          | 80         |
+| 2   | B    | X2          | 77         |
+
+**Output Table**
+
+| ID  | Type | X1          | X2         |
+| --- |:----:| -----------:| ----------:|
+| 1   | A    | 20          | 21         |
+| 2   | A    | 23          | 29         |
+| 2   | B    | 80          | 77         |
+
+The difference being that in this instance Pivot Field would equal the gridcodes, and 
+the value field would contain the percentages. 
+
+###**Add join**
+
+In order to visualise the percentages used as either impervious, pervious, or other,
+the pivot table will have to be joined with the garden plots shapefile. The garden
+plot shapefile contains a lot of unnecessary attributes however. To keep the data 
+clean and understandable, these attributes were first deleted, before the join was
+executed. 
+
+The pivot table calculated for each class the percentage of the garden it covered. 
+However, instead of knowing what percentage is covered by trees, bushes, grass and 
+bare individually, it is more usefull to know what percentage of the garden has a 
+pervious cover. Therefore, three new fields were added (namely, impervious, pervious, 
+and other), combining the percentages of the classes belonging to those groups using
+field calculation.
+
+Throughout this entire process, column names change. The list below shows which 
+values are linked.
+
+    PivotTable = OID                            PivotTab_1 = FID_
+    PivotTab_2 = gridcode1 = pavement           PivotTab_3 = gridcode2 = buildings
+    PivotTab_4 = gridcode3 = grass              PivotTab_5 = gridcode4 = bushes
+    PivotTab_6 = gridcode5 = trees              PivotTab_7 = gridcode6 = other surfaces
+    PivotTab_8 = gridcode7 = other structures   PivotTab_9 = gridcode8 = bare
+
+When the percentages of the pervious group are combined, it thus adds up the values 
+of PivotTab4, PivotTab5, PivotTab6, and PivotTab9. 
