@@ -14,7 +14,6 @@ from arcpy.ia import *
 #     raster_dataset_name_with_extension_DTM = "Mosaic_DTM.tif"
 #
 #     # Execute
-#     # https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/mosaic-to-new-raster.htm
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DSM, output_location, raster_dataset_name_with_extension_DSM,
 #                                        number_of_bands="1")
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DTM, output_location, raster_dataset_name_with_extension_DTM,

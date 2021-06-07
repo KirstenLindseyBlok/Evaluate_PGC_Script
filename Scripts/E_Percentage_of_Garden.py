@@ -55,7 +55,6 @@ def add_join():
 
     # Create new fields and pervious, impervious and other
     # Set local variables
-    # Set local variables
     in_table = "GardenPercent.shp"
     field_name1 = "Pervious"  # first field to be added
     field_name2 = "Impervious"

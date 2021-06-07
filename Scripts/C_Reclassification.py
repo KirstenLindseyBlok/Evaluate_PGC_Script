@@ -9,7 +9,6 @@ def reclassify_class_image():
     out_raster = "RC_Class.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/reclassify.htm
     print("Executing Reclassification")
     arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
     print("Done")
@@ -46,7 +45,6 @@ def Reclass(Classvalue):
     dissolve_field = "Classvalue"
 
     # Execute dissolve
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/dissolve.htm
     print("Dissolving water and other")
     arcpy.Dissolve_management(in_features, out_feature_class, dissolve_field)
 

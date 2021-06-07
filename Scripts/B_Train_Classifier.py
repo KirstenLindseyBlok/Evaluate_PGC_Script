@@ -13,7 +13,6 @@ def train_classifier():
     dimension_value_field = "Classvalue"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/train-support-vector-machine-classifier.htm
     TrainSupportVectorMachineClassifier(in_raster, train_features, out_definition, in_additional_raster,
                                         max_num_samples, attributes, dimension_value_field)
 
