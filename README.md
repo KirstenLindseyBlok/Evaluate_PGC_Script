@@ -10,7 +10,7 @@
 ## **Step one | Data Preparation**
 
 This project requires five data inputs:
-1. Infra red imagery to be classified
+1. Infrared imagery to be classified
 2. Training samples to train the classifier
 3. Ground truth samples to assess the accuracy of the classifier
 4. Private gardens locations per plot
