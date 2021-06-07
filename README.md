@@ -4,7 +4,7 @@
 
 1. Be sure to adjust the file paths in the script accordingly. Think of the workspace 
    environments, but also some of the output or input locations.
-2. In case of use of a regular folder, instead of a geodatabase, be sure to include 
+2. In case of use of a regular folder, instead of a geo-database, be sure to include 
    all file types for both, input data and output data. 
 
 ## **Step one | Data Preparation**
@@ -16,8 +16,8 @@ This project requires five data inputs:
 4. Private gardens locations per plot
 5. A height map to further enhance the classification
 
-The first, fourht and fifth data inputs herefore mentioned can be created using 
-already freely available data. To make this data useable, however, it will have to be 
+The first, fourth and fifth data inputs herefore mentioned can be created using 
+already freely available data. To make this data usable, however, it will have to be 
 prepped. This will be done in the first phase of this project: the data preparation 
 phase. In case data from other sources is ues, other preparations may be needed. 
 Similarly, it is possible that no preparations are needed. The sections below will 
@@ -26,7 +26,7 @@ explain what that data should look like.
 ### **Gardens**
 
 Contains two data inputs:
-- onbegroeidterrein from the BGT wich includes the bgt_fysiek attribute 'erf' 
+- onbegroeidterrein from the BGT which includes the bgt_fysiek attribute 'erf' 
   meaning private gardens
 - percelen from the BKR which includes the plots
 
@@ -45,9 +45,9 @@ Contains two data inputs:
 
 The data is prepped by:
 1. filling the voids in both; DSM and DTM
-2. using raster calculation to substract DTM from DSM
+2. using raster calculation to subtract DTM from DSM
 
-The end result is a raster that shows the hight of objects relatively to the ground 
+The end result is a raster that shows the height of objects relatively to the ground 
 surface. 
 
 Notes:
@@ -60,7 +60,7 @@ As such, do not forget to adjust *in_raster* accordingly:
     in_raster_DTM = "Mosaic_DTM"
 
 2. The data is downloaded from https://downloads.pdok.nl/ahn3-downloadpage/. 
-   DSM-files are labeled "R_*" and DTM-files are labeled "M_*" This commonality is 
+   DSM-files are labeled `R_*` and DTM-files are labeled `M_*` This commonality is 
    used to create lists which will be used to make the mosaic rasters.
 
 3. Be patient. This step takes a long time
@@ -85,7 +85,7 @@ The initial image classification is done following three steps:
 
 ### **Segmentation**
 
-Contains the output of the Imagery preparation as input (mosaic of all infra red 
+Contains the output of the Imagery preparation as input (mosaic of all infrared 
 imagery) and creates a segmented raster image based on the spectral and spatial 
 characteristics of the data. 
 
@@ -124,9 +124,12 @@ have to be taken:
 Starting with the first, the data are reclassified such that only four classes 
 remain, namely: Impervious as 10, Pervious as 20, Bare as 30, and Other as 40. 
 Moreover, make sure that when the local variables are set for the ground truth 
-classification, the code_block is written starting all the way on the leftn(so the 
+classification, the code_block is written starting all the way on the left (so the 
 code_block definition should be written without any tabs in front of it); otherwise 
-the code won't work. Also, no new dataset will be created in this instance; the 
+the tabs will be used in the tool itself as well as it were which will cause the 
+code not to work. 
+
+Also, no new dataset will be created in this instance; the 
 reclassified values will be added as a new column to the already existing dataset. 
 Lastly, it was decided to merge the 'water class' together with the 'other class' as
 it caused to many mis-classifications. 
@@ -145,7 +148,7 @@ confusion matrix.
 
 Note:
 Be sure to safe the confusion matrix output table as a dbf or save in a 
-geodatabase otherwise the code won't run.
+geo-database otherwise the code won't run.
 
 ## **Step 4 | Final Classification**
 
@@ -178,14 +181,14 @@ reclassification), the final classes can be identified. The final classes includ
 
 ### **Classification of Gardens**
 
-As indicated earlier, the final classified raster will first have to be transfomred 
+As indicated earlier, the final classified raster will first have to be transformed 
 to a polygon. This is done to ensure the entire garden will be included in the final
-results. Secondly, the only thing left to be done is extract the gardenplots from the 
+results. Secondly, the only thing left to be done is extract the garden-plots from the 
 final classified polygon file. 
 
 ## **Step 5 | Percentage of Garden**
 
-The percentages per gardenplot are calculated in three steps:
+The percentages per garden-plot are calculated in three steps:
 1. tabular intersection
 2. pivot table
 3. add join
@@ -201,7 +204,7 @@ entire garden plot.
 ### **Pivot Table**
 The issue with the tabular intersection tool is that when a garden contains two 
 separate sections that are classified as green, it will calculate the percentage of
-those sections seperately, instead of giving the combined percentage of the total
+those sections separately, instead of giving the combined percentage of the total
 garden plot that is green. That's where the Pivot Table comes in. This tool is able
 to reduce redundancy in records and flatten one-to-many relationships as illustrated below.
 
@@ -237,7 +240,7 @@ executed.
 
 The pivot table calculated for each class the percentage of the garden it covered. 
 However, instead of knowing what percentage is covered by trees, bushes, grass and 
-bare individually, it is more usefull to know what percentage of the garden has a 
+bare individually, it is more useful to know what percentage of the garden has a 
 pervious cover. Therefore, three new fields were added (namely, impervious, pervious, 
 and other), combining the percentages of the classes belonging to those groups using
 field calculation.
