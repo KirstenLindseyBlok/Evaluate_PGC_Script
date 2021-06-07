@@ -57,7 +57,7 @@ def height():
 
 
 def main():
-    # Set geoprocessing environments
+    # Set geo-processing environments
     env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     # Execute Prep
