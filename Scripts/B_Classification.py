@@ -9,7 +9,7 @@ def classify_raster():
     in_additional_raster = "Mosaic_ir.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/train-support-vector-machine-classifier.htm
+    # https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/classify-raster.htm
     classifiedraster = ClassifyRaster(in_raster, in_classifier_definition, in_additional_raster)
     classifiedraster.save("Classified.tif")
 

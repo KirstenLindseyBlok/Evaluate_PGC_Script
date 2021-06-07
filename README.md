@@ -2,8 +2,9 @@
 
 ## **General Notes**
 
-1. Be sure to adjust the file paths in the script accordingly. Think of the workspace environments, but also some of the
-   output or input locations.
+1. Be sure to adjust the file paths in the script accordingly. 
+   - the workspace environment found at the bottem of all subscripts
+   - the output location of [A_Imagery](Scripts/A_Imagery.py)
 2. In case of use of a regular folder, instead of a geo-database, be sure to include all file types for both, input data
    and output data. 
 
@@ -28,8 +29,8 @@ Contains two data inputs:
 - percelen from the BKR which includes the plots
 
 The data is prepped by:
-1. selecting the data with 'erf' as bgt_fysiek attribute in onbegroeidterrein
-2. clipping the percelen data with the new onbegroeidterrein data such that the gardens are split up by their plot
+1. [selecting](https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/select-layer-by-attribute.htm) the data with 'erf' as bgt_fysiek attribute in onbegroeidterrein
+2. [clipping](https://desktop.arcgis.com/en/arcmap/10.3/tools/analysis-toolbox/clip.htm) the percelen data with the new onbegroeidterrein data such that the gardens are split up by their plot
 
 The end result is a polygon shapefile containing all private garden plots. 
 
@@ -40,47 +41,55 @@ Contains two data inputs:
 - DTM
 
 The data is prepped by:
-1. filling the voids in both; DSM and DTM
-2. using raster calculation to subtract DTM from DSM
+1. [filling the voids](https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/elevationvoidfill.htm) in both; DSM and DTM
+2. using [raster calculation](https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm) to subtract DTM from DSM
 
 The end result is a raster that shows the height of objects relatively to the ground surface. 
 
 Notes:
-In case of multiple DSM and DTM rasters, enable the Mosaic to Raster definition first.
-As such, do not forget to adjust *in_raster* accordingly:
 
+1. In case of multiple DSM and DTM rasters, enable the Mosaic to Raster definition first.
+As such, do not forget to adjust `in_raster*` accordingly:
+
+from
 
     in_raster_DTM = "M_38AN2.TIF"
+    in_raster_DSM = "R_38AN2.TIF"
+
+to
+
     in_raster_DTM = "Mosaic_DTM"
+    in_raster_DSM = "Mosaic_DSM"
 
-2. The data is downloaded from https://downloads.pdok.nl/ahn3-downloadpage/. DSM-files are labeled `R_*` and DTM-files 
-   are labeled `M_*` This commonality is used to create lists which will be used to make the mosaic rasters.
+2. The DSM & DTM data can be downloaded [here](https://downloads.pdok.nl/ahn3-downloadpage/). 
+   
+3. DSM-files are labeled `R_*` and DTM-files are labeled `M_*`. This commonality is used to create lists which will be used to make the mosaic rasters.
 
-3. Be patient. This step takes a long time
+4. Be patient. This step takes a long time
 
 ### **Imagery**
 
 Contains all the infra-red aerial imagery as input
 
 The data is prepped by:
-1. creating a mosaic to merge all the images
+1. creating a [mosaic](https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/mosaic-to-new-raster.htm) to merge all the images
 
 Notes:
-Make sure to change the output_location_ir to the folder matching the workspace environment
+Make sure to change the [output_location_ir](Scripts/A_Imagery.py#L10) to the folder matching the workspace environment
 
 ## **Step two | Image Classification**
 
 The initial image classification is done following three steps:
-1. segmentation
-2. classifier training
-3. classification
+1. [segmentation](https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/segment-mean-shift.htm)
+2. [classifier training](https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/train-support-vector-machine-classifier.htm)
+3. [classification](https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/classify-raster.htm)
 
 ### **Segmentation**
 
 Contains the output of the Imagery preparation as input (mosaic of all infrared imagery) and creates a segmented raster 
 image based on the spectral and spatial characteristics of the data. 
 
-It must be said that the results of the set spectral_detail and spatial_detail as well as the min_segmented_size using 
+It must be said that the results of the set [spectral_detail](Scripts/B_Segmentation.py#L9) and [spatial_detail](Scripts/B_Segmentation.py#L10) as well as the [min_segmented_size](Scripts/B_Segmentation.py#L11) using 
 python may vary from the results with the same settings in ArcGIS Pro itself. 
 
 Also, be patient! Segmentation tends to take long af. 
@@ -88,7 +97,7 @@ Also, be patient! Segmentation tends to take long af.
 ### **Train Classifier**
 
 The classifier is trained using the segmented raster image, and the training samples. The final result is a 
-classification definition file (in this instance saved as: ClassDefinition.ecd) which can later be used to classify the
+classification definition file (in this instance saved as: [ClassDefinition.ecd](Scripts/B_Train_Classifier.py#L9) which can later be used to classify the
 imagery. 
 
 May get a warning that the max number of iterations has been reached. In that instance this process may also be run in 
@@ -103,19 +112,19 @@ In this step, the classification definition created earlier is used to classify 
 ## **Step 3 | Accuracy Assessment**
 
 In order to complete the accuracy assessment a couple of steps will have to be taken:
-1. Reclassify the Classified raster 
+1. [Reclassify](https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/reclassify.htm)  the Classified raster
 2. Reclassify the Ground Truth Samples
-3. Create Accuracy Assessment Points based on Ground Truth
-4. Update Accuracy Assessment Points with Classified raster
-5. Create and Interpret Confusion Matrix
+3. [Create Accuracy Assessment Points](https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/create-accuracy-assessment-points.htm) based on Ground Truth
+4. [Update Accuracy Assessment Points](https://desktop.arcgis.com/en/arcmap/latest/tools/spatial-analyst-toolbox/update-accuracy-assessment-points.htm) with Classified raster
+5. Create and Interpret [Confusion Matrix](https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/compute-confusion-matrix.htm)
 
 ### **Reclassify**
 
 Starting with the first, the data are reclassified such that only four classes remain, namely: Impervious as 10, 
 Pervious as 20, Bare as 30, and Other as 40. Moreover, make sure that when the local variables are set for the ground 
-truth classification, the code_block is written starting all the way on the left (so the code_block definition should be 
-written without any tabs in front of it); otherwise the tabs will be used in the tool itself as well as it were which 
-will cause the code not to work. 
+truth classification, the [code_block](Scripts/D_Classification_of_Gardens.py#L20) is written starting all the way on 
+the left (so the code_block definition should be written without any tabs in front of it); otherwise the tabs will be 
+used in the tool itself as well as it were which will cause the code not to work. 
 
 Also, no new dataset will be created in this instance; the reclassified values will be added as a new column to the 
 already existing dataset. Lastly, it was decided to merge the 'water class' together with the 'other class' as it caused
@@ -138,12 +147,12 @@ Be sure to safe the confusion matrix output table as a dbf or save in a geo-data
 The final classification is completed following a couple of steps and sub-steps:
 1. Final classification of whole area
    - Reclassification of height data
-   - Raster calculation of initial classified raster and height data
+   - [Raster calculation](https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm) of initial classified raster and height data
    - Reclassification of final classes
    
 2. Results of only the garden plots
-   - Transform final classification from raster to polygon
-   - Extract the garden plots
+   - Transform final classification from [raster to polygon](https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/raster-to-polygon.htm)
+   - [Extract](https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/clip.htm) the garden plots
 
 ### **Final Classification**
 
@@ -170,12 +179,12 @@ garden-plots from the final classified polygon file.
 ## **Step 5 | Percentage of Garden**
 
 The percentages per garden-plot are calculated in three steps:
-1. tabular intersection
-2. pivot table
-3. add join
-   - delete unnecessary columns
-   - add field
-   - calculate field
+1. [tabular intersection](https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/tabulate-intersection.htm)
+2. [pivot table](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/pivot-table.htm)
+3. [add join](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/add-join.htm)
+   - [delete](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/delete-field.htm) unnecessary columns
+   - [add field](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/add-field.htm)
+   - [calculate field](https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/calculate-field.htm)
 
 ### **Tabular Intersection**
 Intersects the Garden plots with the classified raster to cross tabulate the area, length, count of the intersecting 

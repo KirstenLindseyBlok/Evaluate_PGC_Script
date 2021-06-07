@@ -9,7 +9,6 @@ def raster_to_polygon():
     field = "VALUE"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/conversion/raster-to-polygon.htm
     arcpy.RasterToPolygon_conversion(in_raster, out_polygon_features, "NO_SIMPLIFY", field)
 
 
@@ -20,7 +19,6 @@ def extract_gardens():
     out_feature_class = "Classified_Garden.shp"
 
     # Execute Clip
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/clip.htm
     arcpy.Clip_analysis(in_features, clip_features, out_feature_class)
 
 

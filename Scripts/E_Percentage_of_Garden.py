@@ -11,7 +11,6 @@ def tabular_intersection():
     class_fields = "gridcode"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/analysis/tabulate-intersection.htm
     print("Executing Tabular Intersection...")
     arcpy.TabulateIntersection_analysis(in_zone_features, zone_fields, in_class_features, out_table, class_fields)
     print("Done")
@@ -26,7 +25,6 @@ def pivot_table():
     out_table = "PivotTable.dbf"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/pivot-table.htm
     print("Executing Pivot table")
     arcpy.PivotTable_management(in_table, fields, pivot_field, value_field, out_table)
     print("Done")
@@ -41,7 +39,6 @@ def add_join():
                   "deltax", "detlay"]
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/delete-field.htm
     deleted_fields = arcpy.DeleteField_management(in_table, drop_field)
     arcpy.CopyFeatures_management(deleted_fields, "GardenEssentials.shp")
 
@@ -53,7 +50,6 @@ def add_join():
     join_field = "FID_"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/add-join.htm
     join_table = arcpy.AddJoin_management(in_layer_or_view, in_field, join_table, join_field)
     arcpy.CopyFeatures_management(join_table, "GardenPercent.shp")
 
@@ -67,7 +63,6 @@ def add_join():
     field_type = "DOUBLE"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/add-field.htm
     arcpy.AddField_management(in_table, field_name1, field_type)
     arcpy.AddField_management(in_table, field_name2, field_type)
     arcpy.AddField_management(in_table, field_name3, field_type)
@@ -84,7 +79,6 @@ def add_join():
     expression_type = "PYTHON3"
 
     # Execute CalculateField
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/data-management/calculate-field.htm
     arcpy.CalculateField_management(in_table, field_1, expression_1, expression_type)
     arcpy.CalculateField_management(in_table, field_2, expression_2, expression_type)
     arcpy.CalculateField_management(in_table, field_3, expression_3, expression_type)

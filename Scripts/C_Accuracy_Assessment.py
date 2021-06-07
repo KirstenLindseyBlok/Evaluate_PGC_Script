@@ -11,8 +11,7 @@ def ground_truth():
     sampling = "STRATIFIED_RANDOM"
 
     # Execute
-    # https: // pro.arcgis.com / en / pro - app / latest / tool - reference / image - analyst /
-    # create - accuracy - assessment - points.htm
+    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/image-analyst/create-accuracy-assessment-points.htm
     CreateAccuracyAssessmentPoints(in_class_data, out_points, target_field, num_random_points, sampling)
 
 
@@ -34,8 +33,7 @@ def confusion_matrix():
     out_confusion_matrix = "ConfusionMatrix.dbf"
 
     # Execute
-    # https: // pro.arcgis.com / en / pro - app / latest / tool - reference / spatial - analyst /
-    # compute - confusion - matrix.htm
+    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/compute-confusion-matrix.htm
     ComputeConfusionMatrix(in_accuracy_assessment_points, out_confusion_matrix)
 
 

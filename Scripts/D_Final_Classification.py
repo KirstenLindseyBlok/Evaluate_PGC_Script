@@ -22,7 +22,6 @@ def raster_calc():
     in_raster_class = "RC_Class.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm
     out_rc_plus_raster = RasterCalculator([in_raster_class, in_raster_ahn], ["x", "y"], "x+y")
     out_rc_plus_raster.save("Height_and_Class.tif")
 
@@ -35,7 +34,6 @@ def reclass_final_class():
     out_raster = "Final_Classes.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/reclassify.htm
     arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
 
 

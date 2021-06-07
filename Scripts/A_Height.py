@@ -27,7 +27,6 @@ def fill_dtm():
     max_void_width = 0
 
     # Execute the ElevationVoidFill function
-    # https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/elevationvoidfill.htm
     out_raster_dtm = ElevationVoidFill(in_raster_dtm, max_void_width)
     out_raster_dtm.save(f"DTM_NoVoid.tif")
     print("Void Fill DTM Completed")
@@ -50,7 +49,6 @@ def height():
     in_raster_dsm = "DSM_NoVoid.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm
     out_rc_minus_raster = RasterCalculator([in_raster_dsm, in_raster_dtm], ["x", "y"], "x-y", "FirstOf", "FirstOf")
     out_rc_minus_raster.save(f"Height.tif")
     print("Calculating Height Data Completed")
