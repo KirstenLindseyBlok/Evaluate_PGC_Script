@@ -2,9 +2,10 @@ import arcpy
 from arcpy import env
 from arcpy.ia import *
 
-def Reclass_DSTM():
+
+def reclass_dstm():
     # Set local variables
-    in_raster = "Height_0"
+    in_raster = "Height.tif"
     reclass_field = "VALUE"
     remap = "-100000 0 1;0 0.1 2;0.1 2 3;2 100000 4"
     out_raster = "RC_Height.tif"
@@ -14,43 +15,40 @@ def Reclass_DSTM():
     arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
     print("Done")
 
-def Raster_Calc():
-    #Set local variables
-    in_raster_AHN = "rc_height"
-    in_raster_Class = "rc_class"
 
-    #Execute
-    #https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm
-    out_rc_plus_raster = RasterCalculator([in_raster_Class, in_raster_AHN], ["x", "y"], "x+y")
+def raster_calc():
+    # Set local variables
+    in_raster_ahn = "RC_Height.tif"
+    in_raster_class = "RC_Class.tif"
+
+    # Execute
+    out_rc_plus_raster = RasterCalculator([in_raster_class, in_raster_ahn], ["x", "y"], "x+y")
     out_rc_plus_raster.save("Height_and_Class.tif")
 
-def Reclass_Final_Class():
-    #Set local variables
+
+def reclass_final_class():
+    # Set local variables
     in_raster = "Height_and_Class.tif"
     reclass_field = "Value"
-    remap = "0 12 1;12 13 2;13 20 3;20 22 4;22 23 5;23 30 6;30 32 7;32 40 8;40 50 9"
-    #1 = pavement                   #6 = trees
-    #2 = low ipervious structures   #7 = other surfaces
-    #3 = buildings                  #8 = other structures
-    #4 = grass                      #9 = bare
-    #5 = bushes
+    remap = "0 12 1;12 13 7;13 20 2;20 22 3;22 23 4;23 30 5;30 32 8;32 40 7;40 42 6;42 50 7"
     out_raster = "Final_Classes.tif"
 
     # Execute
-    # https://pro.arcgis.com/en/pro-app/latest/tool-reference/3d-analyst/reclassify.htm
     arcpy.Reclassify_3d(in_raster, reclass_field, remap, out_raster, "NODATA")
 
+
 def main():
-    # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/PGC_Project/Input_Data_Prep/Data"
+    # Set geo-processing environments
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Reclassifying DSTM")
-    Reclass_DSTM()
+    reclass_dstm()
     print("Executing Raster Calculations")
-    # Raster_Calc()
+    raster_calc()
     print("Execute Final Classification")
-    Reclass_Final_Class()
+    reclass_final_class()
     print("Done")
+
 
 if __name__ == "__main__":
     main()

@@ -1,4 +1,3 @@
-import arcpy
 from arcpy import env
 from arcpy.ia import *
 
@@ -15,55 +14,57 @@ from arcpy.ia import *
 #     raster_dataset_name_with_extension_DTM = "Mosaic_DTM.tif"
 #
 #     # Execute
-#     # https://desktop.arcgis.com/en/arcmap/10.3/tools/data-management-toolbox/mosaic-to-new-raster.htm
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DSM, output_location, raster_dataset_name_with_extension_DSM,
 #                                        number_of_bands="1")
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DTM, output_location, raster_dataset_name_with_extension_DTM,
 #                                        number_of_bands="1")
 
-def FillDTM():
-    #Define input parameters
-    in_raster_DTM = "M_38AN2.TIF"
+
+def fill_dtm():
+    # Define input parameters
+    in_raster_dtm = "M_38AN2.tif"
     max_void_width = 0
 
-    #Execute the ElevationVoidFill function
-    #https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/elevationvoidfill.htm
-    out_raster_DTM = ElevationVoidFill(in_raster_DTM, max_void_width)
-    out_raster_DTM.save(f"DTM_NoVoid.tif")
+    # Execute the ElevationVoidFill function
+    out_raster_dtm = ElevationVoidFill(in_raster_dtm, max_void_width)
+    out_raster_dtm.save(f"DTM_NoVoid.tif")
     print("Void Fill DTM Completed")
 
-def FillDSM():
-    #Define input parameters
-    in_raster_DSM = "R_38AN2.TIF"
+
+def fill_dsm():
+    # Define input parameters
+    in_raster_dsm = "R_38AN2.tif"
     max_void_width = 0
 
-    #Execute the ElevationVoidFill function
-    out_raster_DSM = ElevationVoidFill(in_raster_DSM, max_void_width)
-    out_raster_DSM.save(f"DSM_NoVoid.tif")
+    # Execute the ElevationVoidFill function
+    out_raster_dsm = ElevationVoidFill(in_raster_dsm, max_void_width)
+    out_raster_dsm.save(f"DSM_NoVoid.tif")
     print("Void Fill DSM Completed")
 
-def Height():
-    # Set local variables
-    in_raster_DTM = "DTM_NoVoid.tif"
-    in_raster_DSM = "DSM_NoVoid.tif"
 
-    #Execute
-    #https://pro.arcgis.com/en/pro-app/latest/arcpy/image-analyst/raster-calculator.htm
-    out_rc_minus_raster = RasterCalculator([in_raster_DSM, in_raster_DTM], ["x", "y"], "x-y", "FirstOf", "FirstOf")
+def height():
+    #  Set local variables
+    in_raster_dtm = "DTM_NoVoid.tif"
+    in_raster_dsm = "DSM_NoVoid.tif"
+
+    # Execute
+    out_rc_minus_raster = RasterCalculator([in_raster_dsm, in_raster_dtm], ["x", "y"], "x-y", "FirstOf", "FirstOf")
     out_rc_minus_raster.save(f"Height.tif")
     print("Calculating Height Data Completed")
 
+
 def main():
-    #Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
+    # Set geo-processing environments
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
-    #Execute Prep
+    # Execute Prep
     print("Executing Height Prep")
     # Mosaic()
-    FillDTM()
-    FillDSM()
-    Height()
+    fill_dtm()
+    fill_dsm()
+    height()
     print("Height Prep Finished")
+
 
 if __name__ == "__main__":
     main()

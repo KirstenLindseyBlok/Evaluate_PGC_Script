@@ -2,33 +2,36 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 
-def Segmentation():
+
+def segmentation():
     # Set local variables
     in_raster = "Mosaic_ir.tif"
     spectral_detail = "19.0"
     spatial_detail = "15"
     min_segment_size = "20"
 
-    #Execute Segmentation
-    #https://desktop.arcgis.com/en/arcmap/10.3/tools/spatial-analyst-toolbox/segment-mean-shift.htm
+    # Execute Segmentation
     image = SegmentMeanShift(in_raster, spectral_detail, spatial_detail, min_segment_size)
     image.save("segmented_ir.tif")
 
-def RemoveExtra():
-    # Delete unnecesary files
-    removeList = arcpy.ListRasters(wild_card="*SegmentMean*")
-    print(removeList)
-    arcpy.Delete_management(removeList)
+
+def remove_extra():
+    # Delete unnecessary files
+    remove_list = arcpy.ListRasters(wild_card="*SegmentMean*")
+    print(remove_list)
+    arcpy.Delete_management(remove_list)
+
 
 def main():
-    # Set geoprocessing environments
-    env.workspace = "C:/Users/kirstenb/PycharmProjects/Evaluate_PGC_Script/Data"
+    # Set geo-processing environments
+    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
     env.overwriteOutput = True
     print("Executing Segmentation")
-    Segmentation()
+    segmentation()
     print("Removing Extra files")
-    RemoveExtra()
+    remove_extra()
     print("Segmentation Finished")
+
 
 if __name__ == "__main__":
     main()
