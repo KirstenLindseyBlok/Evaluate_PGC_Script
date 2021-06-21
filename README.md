@@ -130,7 +130,7 @@ Also, no new dataset will be created in this instance; the reclassified values w
 already existing dataset. Lastly, it was decided to merge the 'water class' together with the 'other class' as it caused
 to many mis-classifications. 
 
-### **Accuracy Assessment**
+### **Confusion Matrix**
 
 A stratified random sample of points is used to compare the resulting classified raster with ground truth samples. It 
 does this by assigning the classified values as well as the ground truth value of the concerned location to the point. 

@@ -5,7 +5,7 @@ import B_Segmentation
 import B_Train_Classifier
 import B_Classification
 import C_Reclassification
-import C_Accuracy_Assessment
+import C_Confusion_Matrix
 import D_Final_Classification
 import D_Classification_of_Gardens
 import E_Percentage_of_Garden
@@ -31,7 +31,7 @@ def classification():
 
 def accuracy_assessment():
     C_Reclassification.main()
-    C_Accuracy_Assessment.main()
+    C_Confusion_Matrix.main()
 
 
 def final_classification():
