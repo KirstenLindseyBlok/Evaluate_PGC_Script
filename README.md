@@ -122,7 +122,7 @@ In order to complete the accuracy assessment a couple of steps will have to be t
 
 Starting with the first, the data are reclassified such that only four classes remain, namely: Impervious as 10, 
 Pervious as 20, Bare as 30, and Other as 40. Moreover, make sure that when the local variables are set for the ground 
-truth classification, the [code_block](Scripts/D_Reclassification.py#L20) is written starting all the way on 
+truth classification, the [code_block](Scripts/C_Reclassification.py#L20) is written starting all the way on 
 the left (so the code_block definition should be written without any tabs in front of it); otherwise the tabs will be 
 used in the tool itself as well as it were which will cause the code not to work. 
 
