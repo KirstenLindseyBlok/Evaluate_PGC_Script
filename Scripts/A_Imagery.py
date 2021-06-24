@@ -8,7 +8,7 @@ def infrared():
 
     # Set local Variables
     input_rasters_ir = ir_list
-    output_location_ir = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    output_location_ir = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     raster_dataset_name_with_extension_ir = "Mosaic_ir.tif"
 
     # Execute
@@ -18,7 +18,7 @@ def infrared():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Executing IR Imagery Prep")
     infrared()

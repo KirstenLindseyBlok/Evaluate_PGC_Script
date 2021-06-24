@@ -5,7 +5,7 @@ from arcpy import env
 def reclassify_class_image():
     in_raster = "Classified.tif"
     reclass_field = "Classvalue"
-    remap = "0 15 10;15 25 20;25 35 40;35 45 30;45 55 40"
+    remap = "0 15 10;15 25 20;25 35 30"
     out_raster = "RC_Class.tif"
 
     # Execute
@@ -16,7 +16,7 @@ def reclassify_class_image():
 
 def reclassify_ground_truth():
     # Set local variables for reclassification
-    in_table = "TrainingSamples.shp"
+    in_table = "GroundTruthSamples.shp"
     field = "Classvalue"
     expression = "Reclass(!Classvalue!)"
     expression_type = "PYTHON3"
@@ -25,33 +25,33 @@ def reclassify_ground_truth():
 # More calculator examples at esriurl.com/CalculatorExamples
 def Reclass(Classvalue):
     if Classvalue == 10:
-        return 10
-    elif Classvalue == 20:
         return 20
+    elif Classvalue == 20:
+        return 10
     elif Classvalue == 30:
         return 30
     elif Classvalue == 40:
-        return 40
+        return 20
     elif Classvalue == 50:
         return 30 """
 
     # Execute CalculateField
-    print("Reclassifying water to other")
+    print("Reclassifying Ground Truth")
     arcpy.CalculateField_management(in_table, field, expression, expression_type, code_block)
 
-    # Set local variables to dissolve and merge water and other
-    in_features = "TrainingSamplesOriginal.shp"
-    out_feature_class = "RC_Training.shp"
-    dissolve_field = "Classvalue"
-
-    # Execute dissolve
-    print("Dissolving water and other")
-    arcpy.Dissolve_management(in_features, out_feature_class, dissolve_field)
+    # # Set local variables to dissolve and merge water and other
+    # in_features = "TrainingSamplesOriginal.shp"
+    # out_feature_class = "RC_Training.shp"
+    # dissolve_field = "Classvalue"
+    #
+    # # Execute dissolve
+    # print("Dissolving water and other")
+    # arcpy.Dissolve_management(in_features, out_feature_class, dissolve_field)
 
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Reclassifying Classified Image")
     reclassify_class_image()

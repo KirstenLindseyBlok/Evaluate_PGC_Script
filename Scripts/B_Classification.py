@@ -15,7 +15,7 @@ def classify_raster():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Executing Classification")
     classify_raster()

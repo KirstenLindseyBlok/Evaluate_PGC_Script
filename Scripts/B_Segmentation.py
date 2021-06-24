@@ -24,7 +24,7 @@ def remove_extra():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Executing Segmentation")
     segmentation()

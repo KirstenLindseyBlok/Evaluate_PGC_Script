@@ -5,7 +5,7 @@ from arcpy.sa import *
 def train_classifier():
     # Set local variables
     in_raster = "segmented_ir.tif"
-    train_features = "TrainingSamplesOriginal.shp"
+    train_features = "TrueTrainingSamples.shp"
     out_definition = "ClassDefinition.ecd"
     in_additional_raster = ""
     max_num_samples = "0"
@@ -19,7 +19,7 @@ def train_classifier():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Executing Classifier Training")
     train_classifier()

@@ -120,12 +120,14 @@ In order to complete the accuracy assessment a couple of steps will have to be t
 
 ### **Reclassify**
 
-Starting with the first, the data are reclassified such that only four classes remain, namely: Impervious as 10, 
-Pervious as 20, Bare as 30, and Other as 40. Moreover, make sure that when the local variables are set for the ground 
-truth classification, the [code_block](Scripts/C_Reclassification.py#L20) is written starting all the way on 
-the left (so the code_block definition should be written without any tabs in front of it); otherwise the tabs will be 
-used in the tool itself as well as it were which will cause the code not to work. 
+Starting with the first, the data are reclassified such that only three classes remain, namely: Pervious as 10, 
+Impervious as 20, and Other as 30. 
 
+Secondly, the ground truth data was reclassified as well, such that here too three classes remain: Pervious (10),
+Impervious (20), and Other (30). Make sure that when the local variables are set for the ground truth reclassification, 
+the [code_block](Scripts/C_Reclassification.py#L20) is written starting all the way on the left (so the code_block 
+definition should be written without any tabs in front of it); otherwise the tabs will be used in the tool itself as 
+well, as it were, which will cause the code not to work. 
 Also, no new dataset will be created in this instance; the reclassified values will be added as a new column to the 
 already existing dataset. Lastly, it was decided to merge the 'water class' together with the 'other class' as it caused
 to many mis-classifications. 
