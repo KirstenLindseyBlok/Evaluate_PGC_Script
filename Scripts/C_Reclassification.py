@@ -39,14 +39,14 @@ def Reclass(Classvalue):
     print("Reclassifying Ground Truth")
     arcpy.CalculateField_management(in_table, field, expression, expression_type, code_block)
 
-    # # Set local variables to dissolve and merge water and other
-    # in_features = "TrainingSamplesOriginal.shp"
-    # out_feature_class = "RC_Training.shp"
-    # dissolve_field = "Classvalue"
-    #
-    # # Execute dissolve
-    # print("Dissolving water and other")
-    # arcpy.Dissolve_management(in_features, out_feature_class, dissolve_field)
+    # Set local variables to dissolve and merge unwanted classes
+    in_features = "GroundTruthSamples.shp"
+    out_feature_class = "RC_GroundTruth.shp"
+    dissolve_field = "Classvalue"
+
+    # Execute dissolve
+    print("Dissolving unwanted classes")
+    arcpy.Dissolve_management(in_features, out_feature_class, dissolve_field)
 
 
 def main():

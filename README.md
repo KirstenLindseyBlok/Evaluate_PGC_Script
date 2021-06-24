@@ -127,10 +127,7 @@ Secondly, the ground truth data was reclassified as well, such that here too thr
 Impervious (20), and Other (30). Make sure that when the local variables are set for the ground truth reclassification, 
 the [code_block](Scripts/C_Reclassification.py#L20) is written starting all the way on the left (so the code_block 
 definition should be written without any tabs in front of it); otherwise the tabs will be used in the tool itself as 
-well, as it were, which will cause the code not to work. 
-Also, no new dataset will be created in this instance; the reclassified values will be added as a new column to the 
-already existing dataset. Lastly, it was decided to merge the 'water class' together with the 'other class' as it caused
-to many mis-classifications. 
+well, as it were, which will cause the code not to work.
 
 ### **Confusion Matrix**
 
