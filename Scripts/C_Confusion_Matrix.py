@@ -4,7 +4,7 @@ from arcpy.sa import *
 
 def ground_truth():
     # Set local variables
-    in_class_data = "RC_Training.shp"
+    in_class_data = "RC_GroundTruth.shp"
     out_points = "Ground_Truth.shp"
     target_field = "GROUND_TRUTH"
     num_random_points = "1000"
@@ -36,7 +36,7 @@ def confusion_matrix():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Creating Ground Truth Points")
     ground_truth()

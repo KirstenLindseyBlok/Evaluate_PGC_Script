@@ -54,7 +54,7 @@ def main():
     env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Reclassifying Classified Image")
-    reclassify_class_image()
+    # reclassify_class_image()
     print("Reclassifying Training Samples")
     reclassify_ground_truth()
     print("Done")

@@ -7,7 +7,7 @@ def reclass_dstm():
     # Set local variables
     in_raster = "Height.tif"
     reclass_field = "VALUE"
-    remap = "-100000 0 1;0 0.1 2;0.1 2 3;2 100000 4"
+    remap = "-100000 0.1 1;0.1 2 2;2 100000 3"
     out_raster = "RC_Height.tif"
 
     # Execute
@@ -30,7 +30,7 @@ def reclass_final_class():
     # Set local variables
     in_raster = "Height_and_Class.tif"
     reclass_field = "Value"
-    remap = "0 12 1;12 13 7;13 20 2;20 22 3;22 23 4;23 30 5;30 32 8;32 40 7;40 42 6;42 50 7"
+    remap = "0 11 1; 11 12 2; 12 20 3; 20 21 4; 21 22 7; 22 30 5; 30 31 6; 31 32 7; 32 40 7"
     out_raster = "Final_Classes.tif"
 
     # Execute
@@ -39,12 +39,12 @@ def reclass_final_class():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Reclassifying DSTM")
-    reclass_dstm()
+    # reclass_dstm()
     print("Executing Raster Calculations")
-    raster_calc()
+    # raster_calc()
     print("Execute Final Classification")
     reclass_final_class()
     print("Done")

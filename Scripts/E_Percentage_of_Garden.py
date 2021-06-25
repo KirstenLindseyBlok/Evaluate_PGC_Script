@@ -72,9 +72,9 @@ def add_join():
     field_1 = "Pervious"
     field_2 = "Impervious"
     field_3 = "Other"
-    expression_1 = "!PivotTab_4! + !PivotTab_5! + !PivotTab_6! + !PivotTab_9!"
-    expression_2 = "!PivotTab_2! + !PivotTab_3!"
-    expression_3 = "!PivotTab_7! + !PivotTab_8!"
+    expression_1 = "!PivotTab_2! + !PivotTab_3! + !PivotTab_4!"
+    expression_2 = "!PivotTab_5! + !PivotTab_6!"
+    expression_3 = "!PivotTab_7! + !PivotTab_8!!"
     expression_type = "PYTHON3"
 
     # Execute CalculateField
@@ -85,7 +85,7 @@ def add_join():
 
 def main():
     # Set geo-processing environments
-    env.workspace = "C:/Users/Kirsten/PycharmProjects/Evaluate_PGC_Script/Data"
+    env.workspace = "C:/Users/kirstenb/PycharmProjects/FinalReport/Data"
     env.overwriteOutput = True
     print("Calculating classes per zone")
     tabular_intersection()
