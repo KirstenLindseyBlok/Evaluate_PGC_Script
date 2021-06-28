@@ -17,7 +17,7 @@ def ground_truth():
 def accuracy_assessment():
     # Set local variables
     in_class_data = "RC_Class.tif"
-    in_points = "Ground_Truth.shp"
+    in_points = "RC_GroundTruth.shp"
     out_points = "AccuracyAssessment"
     target_field = "CLASSIFIED"
 
