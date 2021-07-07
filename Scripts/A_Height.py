@@ -15,9 +15,9 @@ from arcpy.ia import *
 #
 #     # Execute
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DSM, output_location, raster_dataset_name_with_extension_DSM,
-#                                        number_of_bands="1")
+#                                        number_of_bands="3")
 #     arcpy.MosaicToNewRaster_management(input_Rasters_DTM, output_location, raster_dataset_name_with_extension_DTM,
-#                                        number_of_bands="1")
+#                                        number_of_bands="3")
 
 
 def fill_dtm():
